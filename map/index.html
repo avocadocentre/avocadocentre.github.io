@@ -1,0 +1,49 @@
+<!doctype html>
+<html>
+<head>
+  <script src="https://api-maps.yandex.ru/2.1/?lang=ru_RU" type="text/javascript"></script>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+    }
+    #map {
+      width: 100%;
+      height: 100%;
+      position: absolute;
+    }
+  </style>
+</head>
+<body>
+  <div id="map"></div>
+  <script>
+    ymaps.ready(function () {
+      var myMap = new ymaps.Map('map', {
+        center: [ 55.59285293101619, 37.369076888768525 ],
+        zoom: 16,
+      }, {
+        searchControlProvider: 'yandex#search'
+      });
+  
+      var myPlacemark = new ymaps.Placemark(myMap.getCenter(), {
+        hintContent: '"AvocadoCentre',
+        balloonContent: 'Центр изучения иностранных языков "Avocado Language Centre"'
+      }, {
+        // Опции.
+        // Необходимо указать данный тип макета.
+        iconLayout: 'default#image',
+        // Своё изображение иконки метки.
+        iconImageHref: './assets/placemark.png',
+        // Размеры метки.
+        iconImageSize: [ 48, 48 ],
+        // Смещение левого верхнего угла иконки относительно
+        // её "ножки" (точки привязки).
+        iconImageOffset: [ -43, -3 ],
+      });
+  
+      myMap.geoObjects
+        .add(myPlacemark);
+    });
+  </script>
+</body>
+</html>
